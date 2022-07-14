@@ -1,0 +1,40 @@
+#search_answer {
+    padding: 10px;
+}
+
+/*Tables*/
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(65, 174, 169, 0.3);
+}
+
+table tr:hover {
+    background-color: rgb(65, 174, 169, 0.5);
+}
+
+table th {
+    background-color: #41AEA9;
+    color: white;
+}
+
+table td, table th {
+    padding: 10px;
+}
+
+td > a:link, td > a:visited {
+    display: block;
+    text-decoration: none;
+    background-color: #213E3B;
+    color: white;
+    padding: 20px;
+}
+
+td > a:hover, td > a:active {
+    background-color: #41AEA9;
+}

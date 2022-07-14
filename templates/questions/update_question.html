@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Update question
+{% endblock %}
+
+{% block page_style %}{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+    <nav>
+        <a href="{{ url_for("index") }}">Home</a>
+        {% include "header/search_bar.html" %}
+    </nav>
+
+    <h1>Update Question</h1>
+
+    <form action="{{ url_for("update_question", id=question["id"]) }}" method="post" enctype="multipart/form-data">
+        <p><label>Title:</label><br>
+            <input type="text" name="title" minlength="1" value="{{ question["title"] }}" required></p>
+        <p><label>Message:</label><br>
+            <textarea name="message" rows="15" cols="40" maxlength="150" required>{{ question["message"] }}</textarea>
+        </p>
+        <button type="submit">Update question</button>
+    </form>
+{% endblock %}

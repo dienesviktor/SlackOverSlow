@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    User Page
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/display.css") }}">
+{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+    <nav>
+        <a href="{{ url_for("index") }}">Home</a>
+        <a href="{{ url_for("logout") }}">Logout</a>
+        {% include "header/search_bar.html" %}
+    </nav>
+    <h1>Your Profile</h1>
+
+    <table>
+        <tr>
+            {% for head in header %}
+                <th>{{ head.title().replace("_", " ") }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for item in user %}
+                {% for key, value in item.items() %}
+                    {% if key == "password_hash" %}
+                    {% else %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tr>
+    </table>
+
+
+    {% include "users/users_questions.html" %}
+    {% include "users/users_answers.html" %}
+    {% include "users/users_comments.html" %}
+{% endblock %}

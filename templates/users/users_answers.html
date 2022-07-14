@@ -1,0 +1,28 @@
+<h1>Your answers
+    <a href="#" onclick="toggleProfileAnswer()" title="Show Answers"><i id="comments_link"
+                                                                        class="fa-solid fa-comments"></i></a></h1>
+<div id="hide_profile_answers">
+
+    <table>
+        <tr>
+
+            <th class="user_id">Id</th>
+            <th class="user_id" >Message</th>
+        </tr>
+
+        {% for item in answers %}
+            <tr>
+                {% for key, value in item.items() %}
+                    {% if key == "question_id" %}
+                        <td>
+                            <a class="user_page_link" href="{{ url_for("display", id=item["question_id"]) }}">{{ value }}</a>
+                        </td>
+                    {% else %}
+                        <td class="user_id">{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>

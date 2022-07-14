@@ -1,0 +1,16 @@
+<form action="{{ url_for("sort_questions") }}">
+    <label>Type:</label>
+    <select name="order_by">
+        <option value="title">Title</option>
+        <option value="submission_time">Submission Time</option>
+        <option value="message">Message</option>
+        <option value="view_number">Number of views</option>
+        <option value="vote_number">Number of votes</option>
+    </select>
+    <label>Order:</label>
+    <select name="order_direction">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+    <button type="submit" value="Submit">Submit</button>
+</form>

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Users list
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/index.css") }}">
+{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+
+    <nav>
+        <a href="{{ url_for("index") }}">Home</a>
+        <a href="{{ url_for("logout") }}">Logout</a>
+        {% include "header/search_bar.html" %}
+    </nav>
+    <table>
+        <tr>
+            {% for head in header %}
+                <th>{{ head.title().replace("_", " ") }}</th>
+            {% endfor %}
+        </tr>
+        {% for user in users %}
+        <tr>
+            {% for key, value in user.items() %}
+                {% if key == "username" %}
+                        <td>
+                            <a href="{{ url_for("user_page", user_id=user["id"]) }}">{{ value }}</a>
+                        </td>
+                {% elif key == "id" %}
+                {% else %}
+                    <td>{{ value }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

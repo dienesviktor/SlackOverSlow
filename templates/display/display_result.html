@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    {{ question[0]["title"][:20] }}...
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/display.css") }}">
+{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+    {% if username == None %}
+        <nav>
+            <a href="{{ url_for("index") }}">Home</a>
+            <a href="{{ url_for("registration") }}">Registration</a>
+            <a href="{{ url_for("login") }}">Login</a>
+            {% include "header/search_bar.html" %}
+        </nav>
+    {% else %}
+        <nav>
+            <a href="{{ url_for("index") }}">Home</a>
+            <a href="{{ url_for("add_answer", id=question[0]["id"]) }}">New answer</a>
+            {% include "header/search_bar.html" %}
+        </nav>
+    {% endif %}
+    {% include "display/questions.html" %}
+    {% include "display/question_comments.html" %}
+    {% include "display/answers.html" %}
+    {% include "display/answer_comments.html" %}
+
+{% endblock %}

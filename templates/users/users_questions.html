@@ -1,0 +1,28 @@
+<h1>Your questions
+    <a href="#" onclick="toggleProfileQuestion()" title="Show Questions"><i id="comments_link"
+                                                                            class="fa-solid fa-comments"></i></a></h1>
+<div id="hide_profile_questions">
+
+    <table>
+        <tr>
+
+            <th class="user_id">Id</th>
+            <th class="user_id">Title</th>
+            <th class="user_id">Message</th>
+        </tr>
+        {% for item in questions %}
+            <tr>
+                {% for key, value in item.items() %}
+                    {% if key == "id" %}
+                        <td>
+                            <a class="user_page_link" href="{{ url_for("display", id=item["id"]) }}">{{ value }}</a>
+                        </td>
+                    {% else %}
+                        <td class="user_id">{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>

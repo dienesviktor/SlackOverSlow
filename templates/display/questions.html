@@ -1,0 +1,57 @@
+<h1>Question
+    <td><a href="#" onclick="toggleCommentsQuestion()" title="Show comments"><i id="comments_link" class="fa-solid fa-comments"></i></a></td>
+    <div id="tag">
+            <span><a href="{{ url_for("add_tag", id=question[0]["id"]) }}" title="Add tag"><i
+                    class="fa-solid fa-tags"></i></a></span>
+        {% for tag in question_tag %}
+            {% for key, value in tag.items() %}
+                {% if key == "name" %}
+                    <span>{{ value }}</span>
+                {% endif %}
+                {% if key == "id" %}
+                    <span><a href="{{ url_for("delete_tag", question_id=question[0]["id"], tag_id=value) }}"><i
+                            class="fa-solid fa-circle-xmark"></i>
+
+</a></span>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</h1>
+<table>
+    <tr>
+        {% for head in question_header %}
+            <th>{{ head.title().replace("_", " ") }}</th>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for item in question %}
+            {% for key, value in item.items() %}
+                {% if key == "image" %}
+                    {% if item["image"] == None %}
+                        <td>No picture</td>
+                    {% else %}
+                        <td id="picture"><a
+                                href="{{ url_for("static",filename="images/questions/"+item["image"]) }}"><img
+                                src="{{ url_for("static",filename="images/questions/"+item["image"]) }}"></a>
+                        </td>
+
+                    {% endif %}
+                {% elif key == "id" or key == "submission_time" or key == "view_number" or key == "user_id" %}
+                {% else %}
+                    <td>{{ value }}</td>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <td><a href="{{ url_for("add_comment_to_question", id=question[0]["id"]) }}" title="Add comment"><i
+                class="fa-regular fa-comment-dots"></i></a></td>
+        <td><a href="{{ url_for("update_question", id=question[0]["id"]) }}" title="Update question"><i
+                class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a href="{{ url_for("delete_question", id=question[0]["id"]) }}" title="Delete question"><i
+                class="fa-solid fa-trash-can"></i></a></td>
+        <td><a href="{{ url_for("vote_up_question", id=question[0]["id"]) }}" title="Vote up"><i
+                class="fa-solid fa-angle-up"></i></a></td>
+        <td><a href="{{ url_for("vote_down_question", id=question[0]["id"]) }}" title="Vote down"><i
+                class="fa-solid fa-angle-down"></i></a></td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Update comment
+{% endblock %}
+
+{% block page_style %}{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+    <nav>
+        <a href="{{ url_for("index") }}">Home</a>
+        {% include "header/search_bar.html" %}
+    </nav>
+
+    <h1>Update Comment</h1>
+
+    <form action="{{ url_for("update_comment", id=comment["id"]) }}" method="post" enctype="multipart/form-data">
+        <p><label>Message:</label><br>
+            <textarea name="message" rows="15" cols="40" maxlength="150" required>{{ comment["message"] }}</textarea>
+        </p>
+        <button type="submit">Update comment</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Bonus Questions
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/index.css") }}">
+{% endblock %}
+
+{% block content %}
+        {% include "header/header.html" %}
+        <nav>
+            <a href="{{ url_for("index") }}">Home</a>
+            {% include "header/search_bar.html" %}
+        </nav><br>
+        <button id="theme-button">Change Theme to Dark</button>
+        <button id="increase-font-button">Increase page font</button>
+        <button id="decrease-font-button">Decrease page font</button>
+        <input
+                data-table-body="doNotModifyThisId_QuestionsTableBody"
+                style="width: 500px" id="doNotModifyThisId_QuestionsFilter"
+                type="text"
+                placeholder="filter questions by keywords">
+        <table>
+            <thead id="doNotModifyThisId_QuestionsTableHeader">
+                <tr>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Vote Count</td>
+                    <td>View Number</td>
+                </tr>
+            </thead>
+            <tbody id="doNotModifyThisId_QuestionsTableBody">
+                {% for question in questions %}
+                    <tr>
+                        <td>{{ question['title'] }}</td>
+                        <td>{{ question['description'] }}</td>
+                        <td>{{ question['vote_number'] }}</td>
+                        <td>{{ question['view_number'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

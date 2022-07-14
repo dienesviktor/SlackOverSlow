@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Main page
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/index.css") }}">
+{% endblock %}
+
+{% block content %}
+    {% include "header/header.html" %}
+    {% include "header/login.html" %}
+
+    {% if username == None %}
+        <nav>
+            <div id="sort">{% include "header/sort_questions.html" %}</div>
+            <a href="{{ url_for("index") }}">Home</a>
+            <a href="{{ url_for("list_questions") }}">All questions</a>
+            <a href="{{ url_for("registration") }}">Registration</a>
+            <a href="{{ url_for("login") }}">Login</a>
+            <a href="{{ url_for("list_tags") }}">Tags</a>
+            {% include "header/search_bar.html" %}
+        </nav>
+        <p>You are not logged in!</p>
+    {% else %}
+        <nav>
+            <div id="sort">{% include "header/sort_questions.html" %}</div>
+            <a href="{{ url_for("index") }}">Home</a>
+            <a href="{{ url_for("list_users") }}">Users</a>
+            <a href="{{ url_for("list_questions") }}">All questions</a>
+            <a href="{{ url_for("add_question") }}">New question</a>
+            <a href="{{ url_for("list_tags") }}">Tags</a>
+            {% include "header/search_bar.html" %}
+        </nav>
+
+    {% endif %}
+
+    <table class="sortable">
+        <tr>
+            {% for head in header %}
+                <th>{{ head.title().replace("_", " ") }}</th>
+            {% endfor %}
+        </tr>
+        {% for question in questions %}
+            <tr>
+                {% for key, value in question.items() %}
+                    {% if key == "id" %}
+                        <td>
+                            <a href="{{ url_for("display", id=question["id"]) }}">{{ value }}</a>
+                        </td>
+                    {% elif key == "image" %}
+                        {% if question["image"] == None %}
+                            <td>No picture</td>
+                        {% else %}
+                            <td id="picture">
+                                <a href="{{ url_for("static",filename="images/questions/"+question["image"]) }}"
+                                   target="_blank"><img
+                                        src="{{ url_for("static",filename="images/questions/"+question["image"]) }}"></a>
+                            </td>
+                        {% endif %}
+                    {% else %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+<h1>Answers
+    <td><a href="#" onclick="toggleCommentsAnswer()" title="Show comments"><i
+            id="comments_link" class="fa-solid fa-comments"></i></a></td>
+</h1>
+<table>
+    <tr>
+        {% for head in answer_header %}
+            <th>{{ head.title().replace("_", " ") }}</th>
+        {% endfor %}
+    </tr>
+    {% if answers != [] %}
+        {% for answer in answers %}
+            {% if answer["state"] == True %}
+            <tr id="accepted_answer">
+                {% for key, value in answer.items() %}
+                    {% if key == "image" %}
+                        {% if answer["image"] == None %}
+                            <td>No picture</td>
+                        {% else %}
+                            <td id="picture"><a
+                                    href="{{ url_for("static",filename="images/answers/"+answer["image"]) }}"><img
+                                    src="{{ url_for("static",filename="images/answers/"+answer["image"]) }}"></a>
+                            </td>
+                        {% endif %}
+                    {% elif key == "id" or key == "submission_time" or key == "question_id" or key == "state" %}
+                    {% else %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+
+                {% if user_id != [] and questions != [] %}
+                    {% if question[0]["user_id"] == user_id[0]["id"] %}
+                        {% if answer["state"] == False %}
+                            <td><a href="{{ url_for("accept_answer", answer_id=answer["id"], state="True") }}"
+                                   title="Accept answer"><i
+                                    class="fa-solid fa-check"></i></a></td>
+                        {% else %}
+                            <td><a href="{{ url_for("accept_answer", answer_id=answer["id"],state="False") }}"
+                                   title="Reject answer"><i
+                                    class="fa-solid fa-x"></i></a></td>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                {% endif %}
+
+                <td><a href="{{ url_for("add_comment_to_answer", id=answer["id"]) }}" title="Add comment"><i
+                        class="fa-regular fa-comment-dots"></i></a></td>
+                <td><a href="{{ url_for("update_answer", id=answer["id"]) }}" title="Update answer"><i
+                        class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="{{ url_for("delete_answer", id=answer["id"]) }}" title="Delete answer"><i
+                        class="fa-solid fa-trash-can"></i></a></td>
+                <td><a href="{{ url_for("vote_up_answer", id=answer["id"]) }}" title="Vote up"><i
+                        class="fa-solid fa-angle-up"></i></a></td>
+                <td><a href="{{ url_for("vote_down_answer", id=answer["id"]) }}" title="Vote down"><i
+                        class="fa-solid fa-angle-down"></a></td>
+            </tr>
+            {% else %}
+            <tr>
+                {% for key, value in answer.items() %}
+                    {% if key == "image" %}
+                        {% if answer["image"] == None %}
+                            <td>No picture</td>
+                        {% else %}
+                            <td id="picture"><a
+                                    href="{{ url_for("static",filename="images/answers/"+answer["image"]) }}"><img
+                                    src="{{ url_for("static",filename="images/answers/"+answer["image"]) }}"></a>
+                            </td>
+                        {% endif %}
+                    {% elif key == "id" or key == "submission_time" or key == "question_id" or key == "state" %}
+                    {% else %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+
+                {% if user_id != [] and questions != [] %}
+                    {% if question[0]["user_id"] == user_id[0]["id"] %}
+                        {% if answer["state"] == False %}
+                            <td><a href="{{ url_for("accept_answer", answer_id=answer["id"], state="True") }}"
+                                   title="Accept answer"><i
+                                    class="fa-solid fa-check"></i></a></td>
+                        {% else %}
+                            <td><a href="{{ url_for("accept_answer", answer_id=answer["id"],state="False") }}"
+                                   title="Reject answer"><i
+                                    class="fa-solid fa-x"></i></a></td>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                {% endif %}
+
+                <td><a href="{{ url_for("add_comment_to_answer", id=answer["id"]) }}" title="Add comment"><i
+                        class="fa-regular fa-comment-dots"></i></a></td>
+                <td><a href="{{ url_for("update_answer", id=answer["id"]) }}" title="Update answer"><i
+                        class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="{{ url_for("delete_answer", id=answer["id"]) }}" title="Delete answer"><i
+                        class="fa-solid fa-trash-can"></i></a></td>
+                <td><a href="{{ url_for("vote_up_answer", id=answer["id"]) }}" title="Vote up"><i
+                        class="fa-solid fa-angle-up"></i></a></td>
+                <td><a href="{{ url_for("vote_down_answer", id=answer["id"]) }}" title="Vote down"><i
+                        class="fa-solid fa-angle-down"></a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td>No answers</td>
+        </tr>
+    {% endif %}
+</table>

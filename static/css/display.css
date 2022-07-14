@@ -1,0 +1,93 @@
+h1 {
+    background-color: #41AEA9;
+    padding: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+#comments_question {
+    display: none;
+}
+
+#comments_answer {
+    display: none;
+}
+
+#comments_link {
+    color: #213E3B;
+}
+
+#hide_profile_questions {
+    display: none;
+}
+
+#hide_profile_answers {
+    display: none;
+}
+
+#hide_profile_question_comments {
+    display: none;
+}
+
+#hide_profile_answer_comments {
+    display: none;
+}
+
+/*Table*/
+
+.user_id {
+    text-align: left;
+    padding: 0px 85px ;
+}
+
+
+.user_page_link{
+    max-width: 150px;
+
+}
+
+
+#accepted_answer {
+    background-color: #41AEA9;
+}
+
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+
+td > a:link, td > a:visited {
+    display: block;
+    text-decoration: none;
+    background-color: #213E3B;
+    color: white;
+    padding: 15px;
+}
+
+td > a:hover, td > a:active {
+    background-color: #41AEA9;
+}
+
+/*Tags*/
+
+#tag {
+    margin-top: 10px;
+    display: inline;
+    color: black;
+    font-size: 0.5em;
+    position: absolute;
+    right: 10px;
+}
+
+#tag > span > a {
+    padding: 0;
+    text-decoration: none;
+    display: inline;
+}
+
+#tag > * > * {
+    color: #213E3B;
+    background-color: #41AEA9;
+}

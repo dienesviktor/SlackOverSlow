@@ -1,0 +1,21 @@
+<table>
+    {% for item in answer_header %}
+        <th>{{ item }}</th>
+    {% endfor %}
+
+    {% for answer in answers %}
+        <tr>
+            {% for key, value in answer.items() %}
+                {% if key == "question_id" %}
+                    <td>
+                        <a href="{{ url_for("display", id=answer["question_id"]) }}">{{ value }}</a>
+                    </td>
+                {% elif key == "id" %}
+                    <td><i class="fa-regular fa-message"></i> {{ value }}</td>
+                {% else %}
+                    <td id="search_answer">{{ value }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>

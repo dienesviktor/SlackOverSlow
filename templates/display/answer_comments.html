@@ -1,0 +1,30 @@
+<div id="comments_answer">
+    <h1>Answer's comments</h1>
+    <table>
+        <tr>
+            {% for head in answer_comment_header %}
+                <th>{{ head.title().replace("_", " ") }}</th>
+            {% endfor %}
+        </tr>
+        {% if answers_comments != [] %}
+            {% for comment in answers_comments %}
+                <tr>
+                    {% for key, value in comment.items() %}
+                        {% if key == "id" or key == "question_id" %}
+                        {% else %}
+                            <td>{{ value }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td><a href="{{ url_for("update_comment", id=comment["id"]) }}" title="Update comment"><i
+                            class="fa-solid fa-pen-to-square"></i></a></td>
+                    <td><a href="{{ url_for("delete_comment", id=comment["id"]) }}" title="Delete comment"
+                           onclick="return delete_comment()"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td>No comments</td>
+            </tr>
+        {% endif %}
+    </table>
+</div>

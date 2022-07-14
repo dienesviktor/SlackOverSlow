@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Search result
+{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/search.css") }}">
+{% endblock %}
+
+{% block content %}
+
+    {% include "header/header.html" %}
+    <nav>
+        <a href="{{ url_for("index") }}">Home</a>
+        {% include "header/search_bar.html" %}
+    </nav>
+
+    {% if questions != [] %}
+        {% include "search/in_questions.html" %}
+    {% else %}
+        {% include "search/in_answers.html" %}
+    {% endif %}
+{% endblock %}

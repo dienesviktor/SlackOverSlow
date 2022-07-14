@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page_title %}{% endblock %} | SlackOverSlow</title>
+    <script src="https://kit.fontawesome.com/6a23e43ed5.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sorttable.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bonusQuestions.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/doNotModifyThisFile.js') }}" defer></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for("static",filename="images/favicon.png") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/main.css") }}">
+    {% block page_style %}{% endblock %}
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
